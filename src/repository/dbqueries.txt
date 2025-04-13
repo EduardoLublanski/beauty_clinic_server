@@ -1,0 +1,150 @@
+CREATIONAL QUERIES
+
+create database beauty_clinic;
+
+use beauty_clinic;
+
+create table client(
+	cpf varchar (11) primary key,
+	first_name varchar (45) not null,
+	last_name varchar (45) not null,
+	email varchar (45),
+	phone varchar (15),
+	cep varchar (8) not null,
+	residence_number varchar (4) not null,
+	how_found_us varchar (45) 
+);
+
+create table esthetician(
+	cpf varchar (13) primary key,
+	first_name varchar (45) not null,
+	last_name varchar (45) not null,
+	specialty varchar (100)
+);
+
+create table appointment(
+	id int AUTO_INCREMENT primary key,
+	appointment_datetime DATETIME,
+	status ENUM('SCHEDULED', 'COMPLETED', 'NO_SHOW', 'CANCELLED') NOT NULL DEFAULT 'SCHEDULED',
+	client_cpf varchar (13),
+	foreign key (client_cpf) REFERENCES client(cpf),
+	esthetician_cpf varchar (13),
+	foreign key (esthetician_cpf) REFERENCES esthetician(cpf)
+) AUTO_INCREMENT = 1000;
+
+create table session(
+	id int AUTO_INCREMENT primary key,
+	session_datetime DATETIME,
+	appointment_id int,
+	foreign key (appointment_id) REFERENCES appointment(id)
+) AUTO_INCREMENT = 1000;
+
+create table treatment(
+	id int AUTO_INCREMENT primary key,
+	name varchar (45) not null,
+	preco decimal (10,2) not null
+) AUTO_INCREMENT = 1000;
+
+create table pack(
+	session_id int,
+	treatment_id int,
+	FOREIGN KEY (session_id) REFERENCES session(id),
+	FOREIGN KEY (treatment_id) REFERENCES treatment(id)
+);
+
+PERSISTENCE QUERIES 
+
+CRUD pack ----------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO pack (session_id, treatment_id) VALUES (?, ?);
+
+UPDATE pack SET session_id = ?, treatment_id = ? WHERE session_id = ? AND treatment_id = ?;
+
+DELETE FROM pack WHERE session_id = ? AND treatment_id = ?;
+
+SELECT * FROM pack WHERE session_id = ? AND treatment_id = ?;
+
+SELECT * FROM pack;
+
+
+CRUD treatment -----------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO treatment (name, preco) VALUES (?, ?);
+
+UPDATE treatment SET name = ?, preco = ? WHERE id = ?;
+
+DELETE FROM treatment WHERE id = ?;
+
+SELECT * FROM treatment WHERE id = ?;
+
+SELECT * FROM treatment;
+
+
+CRUD session --------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO session (session_datetime, appointment_id) VALUES (?, ?);
+
+UPDATE session SET session_datetime = ?, appointment_id = ? WHERE id = ?;
+
+DELETE FROM session WHERE id = ?;
+
+SELECT * FROM session WHERE id = ?;
+
+SELECT * from session;
+
+
+CRUD appointment ----------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO appointment (appointment_datetime, client_cpf, esthetician_cpf) VALUES (?, ?, ?);
+
+UPDATE appointment SET appointment_datetime = ?, status = ?, esthetician_cpf = ? WHERE id = ?;
+
+DELETE FROM appointment WHERE id = ?;
+
+SELECT * FROM appointment WHERE id = ?;
+
+SELECT * FROM appointment;
+
+
+CRUD client ---------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO client (cpf, first_name, last_name, email, phone, cep, residence_number, how_found_us) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+UPDATE client SET first_name = ?, last_name = ?, email = ?, phone = ?, cep = ?, residence_number = ?, how_found_us = ? WHERE cpf = ?;
+
+DELETE FROM client WHERE cpf = ?;
+
+SELECT * FROM client WHERE cpf = ?;
+
+SELECT * FROM client;
+
+
+CRUD esthetician -----------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO esthetician (cpf, first_name, last_name, specialty) VALUES (?, ?, ?, ?);
+
+UPDATE esthetician SET first_name = ?, last_name = ?, specialty = ? WHERE cpf = ?;
+
+DELETE FROM esthetician WHERE cpf = ?;
+
+SELECT * FROM esthetician WHERE cpf = ?;
+
+SELECT * FROM esthetician;
+
+
+special selects:
+
+SELECT how_found_us, COUNT (*) AS total_clients FROM client GROUP BY how_found_us;
+
+
+how_found_us options:
+
+- instagram
+- facebook
+- youtube
+- google
+- referral
+- flyers
+
+
+
