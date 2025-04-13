@@ -62,16 +62,16 @@ UPDATE pack SET session_id = ?, treatment_id = ? WHERE session_id = ? AND treatm
 
 DELETE FROM pack WHERE session_id = ? AND treatment_id = ?;
 
-SELECT * FROM pack WHERE session_id = ? AND treatment_id = ?;
+SELECT * FROM pack WHERE session_id = ?;
 
 SELECT * FROM pack;
 
 
 CRUD treatment -----------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO treatment (name, preco) VALUES (?, ?);
+INSERT INTO treatment (name, price) VALUES (?, ?);
 
-UPDATE treatment SET name = ?, preco = ? WHERE id = ?;
+UPDATE treatment SET name = ?, price = ? WHERE id = ?;
 
 DELETE FROM treatment WHERE id = ?;
 
@@ -123,7 +123,7 @@ CRUD esthetician ---------------------------------------------------------------
 
 INSERT INTO esthetician (cpf, first_name, last_name, specialty) VALUES (?, ?, ?, ?);
 
-UPDATE esthetician SET first_name = ?, last_name = ?, specialty = ? WHERE cpf = ?;
+UPDATE esthetician SET specialty = ? WHERE cpf = ?;
 
 DELETE FROM esthetician WHERE cpf = ?;
 

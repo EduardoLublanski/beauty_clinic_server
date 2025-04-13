@@ -1,0 +1,240 @@
+client ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register client) 
+
+http://localhost:5010/api/v1/clinic/client/register
+
+body: 
+
+{
+  "cpf": "32958616843",
+  "first_name": "Eduardo",
+  "last_name": "Lima",
+  "email": "lublanskiedu@gmail.com",
+  "phone": "11987977651",
+  "cep": "04461925",
+  "residence_number": "96",
+  "how_found_us": "youtube"
+}
+
+
+GET (get client)
+
+http://localhost:5010/api/v1/clinic/client/32958616843
+
+
+GET (list clients)
+
+http://localhost:5010/api/v1/clinic/client
+
+
+PATCH (update client) 
+
+http://localhost:5010/api/v1/clinic/client/update
+
+body:
+
+{
+  "cpf": "32958616843",
+  "first_name": "Eduardo",
+  "last_name": "Lima",
+  "email": "lublanskiedu@gmail.com",
+  "phone": "11987977651",
+  "cep": "04461925",
+  "residence_number": "96",
+  "how_found_us": "youtube"
+}
+
+DELETE (delete client)
+
+http://localhost:5010/api/v1/clinic/client/delete/32958616843
+
+
+
+esthetician ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register esthetician) 
+
+http://localhost:5010/api/v1/clinic/esthetician/register
+
+body: 
+
+{
+  "cpf": "32958616843",
+  "first_name": "Eduardo",
+  "last_name": "Lima",
+  "specialty": "botox"
+}
+
+
+GET (get esthetician)
+
+http://localhost:5010/api/v1/clinic/esthetician/32958616843
+
+
+GET (list clients)
+
+http://localhost:5010/api/v1/clinic/esthetician
+
+
+PATCH (update esthetician) 
+
+http://localhost:5010/api/v1/clinic/esthetician/update/32958616843?specialty=botox
+
+
+DELETE (delete esthetician)
+
+http://localhost:5010/api/v1/clinic/client/delete/32958616843
+
+
+treatment ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register treatment) 
+
+http://localhost:5010/api/v1/clinic/treatment/register
+
+body: 
+
+{
+  "name": "botox",
+  "price": 250.00
+}
+
+
+GET (get treatment)
+
+http://localhost:5010/api/v1/clinic/treatment/1001
+
+
+GET (list treatment)
+
+http://localhost:5010/api/v1/clinic/treatment
+
+
+PATCH (update treatment) 
+
+http://localhost:5010/api/v1/clinic/esthetician/update/1001
+
+body:
+
+{
+  "name": "botox",
+  "price: 250.00
+}
+
+DELETE (delete treatments)
+
+http://localhost:5010/api/v1/clinic/client/delete/1001
+
+
+session ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register session) 
+
+http://localhost:5010/api/v1/clinic/session/register
+
+body: 
+
+{
+  "session_datetime": 'YYYY-MM-DD HH:MM:SS',
+  "appointment_id": 1001
+}
+
+
+GET (get session)
+
+http://localhost:5010/api/v1/clinic/session/1001
+
+
+GET (list sessions)
+
+http://localhost:5010/api/v1/clinic/session
+
+
+PATCH (update session) 
+
+http://localhost:5010/api/v1/clinic/session/update
+
+body:
+
+{
+  "session_datetime": 'YYYY-MM-DD HH:MM:SS',
+  "appointment_id: 1001
+}
+
+DELETE (delete session)
+
+http://localhost:5010/api/v1/clinic/client/session/1001
+
+
+appointment ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register appointment) 
+
+http://localhost:5010/api/v1/clinic/appointment/register
+
+body: 
+
+{
+  "appointment_datetime": 'YYYY-MM-DD HH:MM:SS',
+  "client_cpf": 32958616843,
+  "esthetician_cpf": 32958616843
+}
+
+
+GET (get appointment)
+
+http://localhost:5010/api/v1/clinic/appointment/1001
+
+
+GET (list appointment)
+
+http://localhost:5010/api/v1/clinic/appointment
+
+
+PATCH (update appointment) 
+
+http://localhost:5010/api/v1/clinic/appointment/update
+
+body:
+
+{
+  "appointment_datetime": 'YYYY-MM-DD HH:MM:SS',
+  "esthetician_cpf": 32958616843,
+  "status": "COMPLETED"
+}
+
+DELETE (delete appointment)
+
+http://localhost:5010/api/v1/clinic/client/appointment/1001
+
+
+pack ENDPOINTS -----------------------------------------------------------------------------------------------------------
+
+POST (register pack) 
+
+http://localhost:5010/api/v1/clinic/appointment/register
+
+body: 
+
+{
+  "session_id": 1001,
+  "treatment_id": 1001
+}
+
+
+GET (get pack)
+
+http://localhost:5010/api/v1/clinic/pack?session_id=1001
+
+
+GET (list pack)
+
+http://localhost:5010/api/v1/clinic/pack
+
+DELETE (delete pack)
+
+http://localhost:5010/api/v1/clinic/client/pack?session_id=1001&treatment_id=1001
+
+
+
